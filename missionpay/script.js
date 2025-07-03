@@ -13,7 +13,6 @@ const firebaseConfig = {
   measurementId: "G-RW5K0MHG46"
 };
 
-// Init
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
@@ -22,8 +21,9 @@ const usernameInput = document.getElementById('username');
 const resultDiv = document.getElementById('result');
 const copyBtn = document.getElementById('copyBtn');
 
-// Cooldown duration in milliseconds
-const COOLDOWN = 30000; // 30 seconds
+let currentCode = ""; // Store only the 4-digit code
+
+const COOLDOWN = 30000;
 
 getCodeBtn.addEventListener('click', async () => {
   const username = usernameInput.value.trim();
@@ -35,10 +35,12 @@ getCodeBtn.addEventListener('click', async () => {
   if (lastTime && now - lastTime < COOLDOWN) {
     resultDiv.textContent = "You have another mission in progress.";
     copyBtn.style.display = "none";
+    currentCode = "";
     return;
   }
 
   const code = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+  currentCode = code;
 
   const date = new Date();
   const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
@@ -52,10 +54,8 @@ getCodeBtn.addEventListener('click', async () => {
       createdAt: formattedDate
     });
 
-    const message = `User: ${username} — Code: ${code}\nCreated At: ${formattedDate}`;
-    resultDiv.textContent = message;
+    resultDiv.textContent = `User: ${username} — Code: ${code}\nCreated At: ${formattedDate}`;
     copyBtn.style.display = "inline-block";
-
     localStorage.setItem(`mission_cooldown_${username}`, now.toString());
   } catch (error) {
     alert('Error saving to Firebase: ' + error.message);
@@ -63,9 +63,8 @@ getCodeBtn.addEventListener('click', async () => {
 });
 
 copyBtn.addEventListener('click', () => {
-  const text = resultDiv.textContent;
-  if (text) {
-    navigator.clipboard.writeText(text);
+  if (currentCode) {
+    navigator.clipboard.writeText(currentCode);
     copyBtn.textContent = "✅ Copied!";
     setTimeout(() => (copyBtn.textContent = "📋 Copy"), 2000);
   }
