@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MissionPay - Code Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: linear-gradient(to right, #dbeafe, #f0f4ff);
+    }
+    input[type="text"] {
+      font-size: 18px;
+      padding: 10px;
+      width: 280px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #111827;
+      background: #e0f2fe;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      letter-spacing: 0.2em;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 MissionPay - Get Your Code</h1>
+  <input type="text" id="username" placeholder="Enter your username" />
+  <button id="getCodeBtn">Get Code</button>
+  <div id="result"></div><br>
+  <button id="copyBtn" style="display:none;">📋 Copy</button>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
