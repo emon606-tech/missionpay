@@ -6,51 +6,84 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      background-color: rgb(15, 15, 15);
+      color: white;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 50px;
-      background: linear-gradient(to right, #dbeafe, #f0f4ff);
+      padding: 60px 20px;
     }
+
+    h1 {
+      color: #3b82f6;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+
     input[type="text"] {
       font-size: 18px;
-      padding: 10px;
-      width: 280px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      width: 260px;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      outline: none;
+      box-shadow: 0 0 0 2px #3b82f6;
+      background: #1f1f1f;
+      color: #fff;
     }
+
     button {
       font-size: 18px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       margin: 10px;
-      cursor: pointer;
-      background-color: #2563eb;
-      color: white;
       border: none;
-      border-radius: 6px;
-      transition: background 0.3s;
+      border-radius: 8px;
+      background-color: #3b82f6;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
     }
+
     button:hover {
-      background-color: #1d4ed8;
+      background-color: #2563eb;
+      transform: scale(1.05);
     }
+
     #result {
       margin-top: 30px;
       font-size: 20px;
-      color: #111827;
-      background: #e0f2fe;
+      background-color: #1e1e1e;
+      color: #10b981;
       padding: 20px;
       border-radius: 10px;
       display: inline-block;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.1em;
       white-space: pre-line;
+      box-shadow: 0 0 10px rgba(0, 255, 140, 0.2);
+    }
+
+    #copyBtn {
+      display: none;
+      background-color: #10b981;
+    }
+
+    #copyBtn:hover {
+      background-color: #059669;
+    }
+
+    @media screen and (max-width: 600px) {
+      input, button {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>🎯 MissionPay - Get Your Code</h1>
-  <input type="text" id="username" placeholder="Enter your username" />
-  <button id="getCodeBtn">Get Code</button>
+  <h1>🚀 MissionPay - Secure Code Generator</h1>
+  <input type="text" id="username" placeholder="Enter your username" /><br>
+  <button id="getCodeBtn">🎯 Get Code</button>
   <div id="result"></div><br>
-  <button id="copyBtn" style="display:none;">📋 Copy</button>
+  <button id="copyBtn">📋 Copy</button>
 
   <script type="module" src="script.js"></script>
 </body>
