@@ -18,20 +18,15 @@ const database = getDatabase(app);
 
 const getCodeBtn = document.getElementById('getCodeBtn');
 const usernameInput = document.getElementById('username');
-const cooldownInput = document.getElementById('cooldownInput');
 const resultDiv = document.getElementById('result');
 const copyBtn = document.getElementById('copyBtn');
 
 let currentCode = "";
+const COOLDOWN = 60000; // 1 minute in milliseconds
 
 getCodeBtn.addEventListener('click', async () => {
   const username = usernameInput.value.trim();
   if (!username) return alert('Please enter your username.');
-
-  // Get cooldown from input, clamp between 3s and 60s
-  let cooldownInputSeconds = parseInt(cooldownInput.value, 10);
-  if (isNaN(cooldownInputSeconds)) cooldownInputSeconds = 60;
-  const COOLDOWN = Math.min(Math.max(cooldownInputSeconds * 1000, 3000), 60000);
 
   const now = Date.now();
   const lastTime = localStorage.getItem(`mission_cooldown_${username}`);
